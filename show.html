@@ -1,0 +1,284 @@
+<!DOCTYPE HTML>
+
+<html style="overflow-y:hidden;">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta name="renderer" content="webkit|ie-comp|ie-stand">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+  <LINK rel="Bookmark" href="/favicon.ico" >
+
+    <LINK rel="Shortcut Icon" href="/favicon.ico" />
+
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.min.1.8.1.js"></script>
+
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.min.js"></script>
+
+<!--[if lt IE 9]>
+
+<script type="text/javascript" src="__PUBLIC__/js/html5.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/respond.min.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/PIE_IE678.js"></script>
+
+<![endif]-->
+
+<link href="__PUBLIC__/css/H-ui.css" rel="stylesheet" type="text/css" />
+
+<link href="__PUBLIC__/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/font/font-awesome.min.css"/>
+
+<!--[if IE 7]>
+
+<link href="font/font-awesome-ie7.min.css" rel="stylesheet" type="text/css" />
+
+<![endif]-->
+
+<!--[if IE 6]>
+
+<script type="text/javascript" src="js/DD_belatedPNG_0.0.8a-min.js" ></script>
+
+<script>DD_belatedPNG.fix('*');</script>
+
+<![endif]-->
+
+<title>智慧安全环保系统-管理端</title>
+
+<script type="text/javascript">
+
+  $(function(){
+
+    $('#nav-toggle').click(function(){
+
+     $.ajax(
+
+     {
+
+      type: "POST",
+
+      url:"{:U('Index/gout')}",
+
+      dataType:"json",
+
+      success:function(data){
+
+        if(data.statu==1){
+
+          layer.msg('退出成功，即将跳转！',5,9);
+
+          window.location.href='{:U("Index/index");}';
+        }
+      },
+      error:function(data)
+      {
+        layer.msg('error',3,8);
+      }
+    });
+   });
+  });
+</script>
+
+</head>
+
+<body style="overflow:hidden">
+
+  <header class="Hui-header cl"> 
+    <a class="Hui-logo l" title="H-ui.admin v2.1" href="/">智慧安全环保系统-管理端</a> 
+
+    <span class="Hui-userbox"><span class="c-white">用户：{$username}</span>
+    <a href="__ROOT__/" target="_blank" style="float: left; color: #fff;margin-right: 10px;line-height:26px;">查看企业端</a> 
+    <a class="btn btn-danger radius ml-10" id="nav-toggle" href="#" title="退出"><i class="icon-off"></i> 退出</a>
+    </span> <a aria-hidden="false" class="Hui-nav-toggle"  href="#"></a> 
+  </header>
+
+  <div class="cl Hui-main">
+
+    <aside class="Hui-aside" style="">
+
+      <input runat="server" id="divScrollValue" type="hidden" value="" />
+
+      <div class="menu_dropdown bk_2">
+      <!--<dl id="menu-article">
+
+          <dt><i class="icon-edit"></i> 通知公告<b></b></dt>
+
+          <dd>
+
+            <ul>
+              <li><a _href="{:U('Notice/notice_list');}" href="javascript:void(0)">通知公告列表</a></li>
+
+            </ul>
+
+          </dd>
+
+        </dl>-->
+        <dl id="menu-article">
+
+         <a _href="{:U('Log/dbsx')}" href="javascript:void(0)"> <dt><img src="__PUBLIC__/ico/i3.png"/>&nbsp; 待办事项<b></b></dt></a>
+        </dl>
+        <dl id="menu-article">
+
+         <a _href="{:U('Qiye/qiye_list')}" href="javascript:void(0)"> <dt><img src="__PUBLIC__/ico/i1.png"/>&nbsp;一企一档<b></b></dt></a>
+
+       
+
+        </dl>
+         <dl id="menu-article">
+
+          <dt><img src="__PUBLIC__/ico/i2.png"/>&nbsp; 环保数据库<b></b></dt>
+
+          <dd>
+
+            <ul>
+              <li><a _href="{:U('Qiye/qiye_list_scdb')}" href="javascript:void(0)"><img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;综合查询</a></li>
+              <li><a _href="{:U('Qiye/qiye_zhuanxiang')}" href="javascript:void(0)"><img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;专项查询</a></li>
+              <if condition="$userlv gt 0">
+              <li><a _href="{:U('Qiye/audit_scdb')}" href="javascript:void(0)"><img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;环保数据审核</a></li>
+              </if>
+              <!-- <li><a _href="{:U('Qiye/query_scsbjyfcl')}" href="javascript:void(0)">生产设备及原辅材料</a></li> 
+              <li><a _href="{:U('Qiye/query_nyjbxxlb')}" href="javascript:void(0)">能源基本信息列表</a></li> 
+              <li><a _href="{:U('Qiye/query_qsqkjfszlssqk')}" href="javascript:void(0)">取水情况及废水治理设施情况</ a></li> 
+              <li><a _href="{:U('Qiye/query_fszlssxx')}" href="javascript:void(0)">废水治理设施信息</a></li> 
+              <li><a _href="{:U('Qiye/query_fszpfkzbxx')}" href="javascript:void(0)">废水总排放口指标信息</a></li> 
+              <li><a _href="{:U('Qiye/query_gygljbxx')}" href="javascript:void(0)">工业锅炉基本信息</a></li> 
+              <li><a _href="{:U('Qiye/query_zlssjwrwscpfqk')}" href="javascript:void(0)">治理设施及污染物生产排放情况</a></li> 
+              <li><a _href="{:U('Qiye/query_gylyfqzlypf')}" href="javascript:void(0)">工业炉窑废气治理与排放</a></li> 
+              <li><a _href="{:U('Qiye/query_shqygyjrlfqzlypf')}" href="javascript:void(0)">石化企业工艺加热炉废气治理与排放</a></li> 
+              <li><a _href="{:U('Qiye/query_shqyscgyfqzlypf')}" href="javascript:void(0)">石化企业生产工艺废气治理与排放</a></li> 
+              <li><a _href="{:U('Qiye/query_gyqyyjytcgzzxx')}" href="javascript:void(0)">工业企业有机液体储罐、装载信息</a></li> 
+              <li><a _href="{:U('Qiye/query_gyqygtwldcxx')}" href="javascript:void(0)">工业企业固体物料堆存信息</a></li> 
+              <li><a _href="{:U('Qiye/query_hhfxyjwyfclsyxx')}" href="javascript:void(0)">含挥发性有机物原辅材料使用信息</a></li> 
+              <li><a _href="{:U('Qiye/query_qtfqzlypf')}" href="javascript:void(0)">其他废气治理与排放</a></li> 
+              <li><a _href="{:U('Qiye/query_gtfwcsxx')}" href="javascript:void(0)">固体废物产生信息</a></li> 
+              <li><a _href="{:U('Qiye/query_wxfwcsxx')}" href="javascript:void(0)">危险废物产生信息</a></li> 
+              <li><a _href="{:U('Qiye/query_wxfwzxfsczqk')}" href="javascript:void(0)">危险废物自行焚烧处置情况</a></li> 
+              <li><a _href="{:U('Qiye/query_fxwzjtfhjyjya')}" href="javascript:void(0)">风险物质及突发环境应急预案</a></li>  -->
+            </ul>
+
+          </dd>
+
+        </dl>
+        <dl id="menu-article">
+
+          <dt><img src="__PUBLIC__/ico/i3.png"/>&nbsp; 巡检管理<b></b></dt>
+
+          <dd>
+
+            <ul>
+              <li><a _href="{:U('Spection/order')}" href="javascript:void(0)"><img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;巡检运行</a></li>
+              <if condition="$userlv eq 0">
+              <!-- <li><a _href="{:U('Spection/order_add')}" href="javascript:void(0)"><img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;添加巡检</a></li>  -->
+              </if>
+               <li><a _href="{:U('Spection/danger')}" href="javascript:void(0)"><img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;隐患报告</a></li>
+             <!--  <li><a _href="{:U('Spection/danger_edit')}" href="javascript:void(0)">整改记录</a></li> -->
+              <!-- <li><a _href="{:U('Spection/assess')}" href="javascript:void(0)"><img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;巡检考核</a></li> -->
+              <li><a _href="{:U('Spection/djlist')}" href="javascript:void(0)"><img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;待检企业</a></li>
+              <li><a _href="{:U('Spection/plan')}" href="javascript:void(0)"><img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;巡检计划</a></li>
+              </if>
+              <li><a _href="{:U('Spection/kh')}" href="javascript:void(0)"><img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;巡检监查</a></li>
+              <if condition="$userlv gt 0">
+              <li><a _href="{:U('Spection/article')}" href="javascript:void(0)"><img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;巡检内容</a></li> 
+               </if>
+            </ul>
+
+          </dd>
+
+        </dl>
+
+        <if condition="$userlv eq 1">
+        <dl id="menu-article">
+          <dt><img src="__PUBLIC__/ico/i4.png"/>&nbsp; 环保大数据<b></b></dt>
+          <dd>
+            <ul>
+              <li><a _href="http://122.156.219.148:28080/dataEntryApi/a/dataentry/screen/screenHbTqzk/form?username=aqhbj" href="javascript:void(0)">
+              <img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;天气状况</a></li>
+              <li><a _href="http://122.156.219.148:28080/dataEntryApi/a/dataentry/screen/screenHbJcxfaj?username=aqhbj" href="javascript:void(0)"><img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;监察信访</a></li>
+              <li><a _href="http://122.156.219.148:28080/dataEntryApi/a/dataentry/screen/screenHbHjyxpjsp?username=aqhbj" href="javascript:void(0)">
+                <img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;环境评价</a></li>
+              <li><a _href="http://122.156.219.148:28080/dataEntryApi/a/dataentry/screen/screenHbZdpw?username=aqhbj" href="javascript:void(0)">
+                <img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;重点企业</a></li>
+              <li><a _href="http://122.156.219.148:28080/dataEntryApi/a/dataentry/screen/screenHbHyzd?username=aqhbj" href="javascript:void(0)">
+
+                <img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;行业占比</a></li>
+              <li><a _href="http://122.156.219.148:28080/dataEntryApi/a/dataentry/screen/screenHbQyfb?username=aqhbj" href="javascript:void(0)">
+                <img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;一区三园</a></li>
+              <li><a _href="http://122.156.219.148:28080/dataEntryApi/a/dataentry/screen/screenHbHbzbxx/form?username=aqhbj" href="javascript:void(0)">
+                <img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;其它指标</a></li>
+
+            </ul>
+          </dd>
+        </dl>
+        </if>
+        <if condition="$userlv gt 0">
+        <dl id="menu-article">
+          <dt><img src="__PUBLIC__/ico/i5.png"/>&nbsp;系统管理<b></b></dt>
+          <dd>
+            <ul>
+              <li><a _href="{:U('Notice/notice_list')}" href="javascript:void(0)">
+              <img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;公告中心</a></li>
+              <li><a _href="{:U('Company/index')}" href="javascript:void(0)">
+              <img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;注册审核</a></li>
+              <li><a _href="{:U('Spection/index')}" href="javascript:void(0)"><img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;管理员列表</a></li>   
+              <li><a _href="{:U('Log/admin_log')}" href="javascript:void(0)">
+              <img src="__PUBLIC__/ico/j2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;管理员日志</a></li>
+            </ul>
+          </dd>
+        </dl>
+        </if>
+
+    
+  </div>
+</aside>
+<div class="dislpayArrow"><a class="pngfix" href="javascript:void(0);"></a></div>
+<section class="Hui-article">
+  <div id="Hui-tabNav" class="Hui-tabNav">
+    <div class="Hui-tabNav-wp">
+      <ul id="min_title_list" class="acrossTab cl">
+       <a href="{:U('Index/show')}"> <li class="active"><span title="我的桌面" data-href="welcome.html">我的桌面</span><em></em></li></a>
+      </ul>
+    </div>
+    <div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default btn-small" href="javascript:;"><i class="icon-step-backward"></i></a><a id="js-tabNav-next" class="btn radius btn-default btn-small" href="javascript:;"><i class="icon-step-forward"></i></a></div>
+
+  </div>
+
+  <div id="iframe_box" class="Hui-articlebox">
+
+    <div class="show_iframe">
+
+      <div style="display:none" class="loading"></div>
+
+      <iframe scrolling="yes" frameborder="0" src="{:U('Index/welcome')}"></iframe>
+
+    </div>
+
+  </div>
+
+</section>
+
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/Validform_v5.3.2_min.js"></script> 
+
+<script type="text/javascript" src="__PUBLIC__/layer/layer.min.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/H-ui.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/H-ui.admin.js"></script>
+
+
+
+</body>
+
+</html>
